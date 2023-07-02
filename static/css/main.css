@@ -175,7 +175,7 @@ body{
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  
+  cursor: pointer;
 }
 
 @keyframes animate{
@@ -227,6 +227,25 @@ body{
   text-overflow: ellipsis;
 }
 
+.card span{
+  z-index: 5;
+  position: absolute;
+  font-weight: bolder;
+  width: 120px;
+  height: 175px;
+}
+
+.card span strong{
+  background-color: #111111ef;
+  padding: 0 0 0 8px;
+  border-top-left-radius: 8px;
+  clip-path: polygon(90% 0, 0 0, 0 90%);
+display: block;
+width: 6ch;
+height: 5ch;
+font-size: 0.9rem;
+}
+
 .showSearch{
   background: none;
   border: none;
@@ -250,17 +269,19 @@ body{
 
 .btns button{
   font-size: 1.1rem;
-  padding: 5px 12px;
+  padding: 5px 10px;
   font-weight: bold;
   background: #333;
   border-radius: 8px;
   border: 0.5px solid #9D9D9D;
   margin: 10px;
+  cursor: pointer;
+  display: none;
 }
 
-.btns button:hover{
+.btns button:active{
   color: #00D40D;
   background: #111;
-  transition: 150ms ease-in-out;
+  transition: 50ms ease-in-out;
   border-color: #606060;
 }

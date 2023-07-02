@@ -2,8 +2,6 @@ let topAiringDiv = document.querySelector('.topAiring');
 let next_page = document.querySelector(".next");
 let prev_page = document.querySelector(".prev");
 function getTopAnimes(p) {
-  next_page.disabled=true;
-  prev_page.disabled=true;
   page = p;
   if(page == undefined){page = Number(localStorage.getItem("topAnimeCurrentPage"))}
   localStorage.setItem("topAnimeCurrentPage",page)
@@ -44,10 +42,14 @@ function getTopAnimes(p) {
 getTopAnimes(1);
 
 function nextTopAnimes(){
+  next_page.disabled=true;
+  prev_page.disabled=true; 
   topAiringDiv.innerHTML = "";
   getTopAnimes(Number(localStorage.getItem("topAnimeCurrentPage"))+1)
 }
 function prevTopAnimes(){
+  next_page.disabled=true;
+  prev_page.disabled=true;
   topAiringDiv.innerHTML = "";
   getTopAnimes(Number(localStorage.getItem("topAnimeCurrentPage"))-1)
 }

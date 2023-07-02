@@ -7,7 +7,7 @@ fetch('https://api.animetv.ml/topanime?type=airing&page=1',
   }
   throw new Error('Request failed!');
 }, networkError => {
-  console.log(networkError.message);
+  
 }).then(jsonResponse => {
   arr = jsonResponse['items']
   for (var i = 0; i < arr.length; i++) {
@@ -16,3 +16,4 @@ fetch('https://api.animetv.ml/topanime?type=airing&page=1',
     topAiringDiv.innerHTML += html;
   }
 })}
+

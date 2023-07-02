@@ -13,3 +13,18 @@ navBtn.addEventListener('click',()=>{
     navOpened = false;
   }
 });
+
+let showSearchBtn = document.querySelector('.showSearch');
+let searchBox = document.querySelector('.search');
+let showSearch = false;
+showSearchBtn.addEventListener('click', () => {
+  if (!showSearch) {
+    showSearch = true;
+    searchBox.style.height = '50px';
+    showSearchBtn.querySelector('i').classList.add('active')
+  } else if (showSearch) {
+    showSearch = false;
+    searchBox.style.height = '0';
+    showSearchBtn.querySelector('i').classList.remove('active')
+  }
+});

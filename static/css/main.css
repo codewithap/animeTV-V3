@@ -285,3 +285,123 @@ font-size: 0.9rem;
   transition: 50ms ease-in-out;
   border-color: #606060;
 }
+
+.loader .x{
+  width: 60px;
+  height:  60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  border-radius: 50%;
+  box-shadow: 0 0 1px .5px #0052FF,
+        inset 0 0 1px 1px #0052FF;
+  margin-top: 10px;
+  animation: logoBorder 3s linear infinite;
+}
+
+.loader{
+  position: fixed;
+  top: 0;
+  width: 60px;
+  height: 66px;
+  /* background: #034292B5; */
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon{
+  width: 66%;
+  height: 66%;
+  background: #111;
+  border-radius: 50%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.icon .blocks{
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 9px;
+  margin: 0.5px;
+  border-radius: 1px;
+}
+
+.icon .blocks:nth-child(even){
+  background: #FF1B00;
+  box-shadow: inset 0px 1px 1.5px #FF604E,
+              inset 0px -.8px 1.5px #610A00;
+  animation: logoAnimationRed 3s linear infinite;
+}
+
+.icon .blocks:nth-child(odd) {
+  background: #0061FF;
+  box-shadow: inset 0px 1px 1.5px #58A2FF,
+              inset 0px -0.5px 0.8px #003A77;
+  animation: logoAnimationBlue 3s linear infinite;
+}
+
+@keyframes logoBorder{
+  0%{
+    box-shadow: 0 0 1px .5px #0052FF,
+    inset 0 0 1px 1px #0052FF;
+  } 48% {
+    box-shadow: 0 0 1px .5px #0052FF,
+    inset 0 0 1px 1px #0052FF;
+  } 52% {
+    box-shadow: 0 0 1px .5px #FF1B00,
+      inset 0 0 1px 1px #FF1B00;
+  } 95% {
+    box-shadow: 0 0 1px .5px #FF1B00,
+      inset 0 0 1px 1px #FF1B00;
+  }
+}
+
+@keyframes logoAnimationRed{
+  0%{
+    background: #FF1B00;
+    box-shadow: inset 0px 1px 1.5px #FF604E,
+    inset 0px -.8px 1.5px #610A00;
+  } 48% {
+     background: #FF1B00;
+     box-shadow: inset 0px 1px 1.5px #FF604E,
+       inset 0px -.8px 1.5px #610A00;
+   } 52% {
+    background: #0061FF;
+    box-shadow: inset 0px 1px 1.5px #58A2FF,
+    inset 0px -0.5px 0.8px #003A77;
+  } 95% {
+    background: #0061FF;
+    box-shadow: inset 0px 1px 1.5px #58A2FF,
+    inset 0px -0.5px 0.8px #003A77;
+  }
+}
+
+@keyframes logoAnimationBlue{
+  0%{
+    background: #0061FF;
+    box-shadow: inset 0px 1px 1.5px #58A2FF,
+    inset 0px -0.5px 0.8px #003A77;
+  } 48% {
+    background: #0061FF;
+    box-shadow: inset 0px 1px 1.5px #58A2FF,
+    inset 0px -.8px 1.5px #003A77;
+  } 52%{
+    background: #FF1B00;
+    box-shadow: inset 0px 1px 1.5px #FF604E,
+    inset 0px -0.5px 0.8px #610A00;
+  } 95% {
+    background: #FF1B00;
+    box-shadow: inset 0px 1px 1.5px #FF604E,
+      inset 0px -0.5px 0.8px #610A00;
+}
+}

@@ -21,7 +21,19 @@
     <nav class="navigation">
       <div class="nav-bar">
           <button class="nav-menu-open"><i class="bi bi-list"></i></button>
-        <h1><a href="https://v2.animetv.ml"><img class="nav-logo" src="static/img/logo.png" alt="static/img/logo.png"> &nbsp;&nbsp;AnimeTV.ml</a></h1>
+        <h1 style="width: 200px;justify-content: space-between; display: flex;align-items: center; flex-direction: row margin-top: 10px;"><a style="" href="https://v2.animetv.ml"><div class="loader">
+      <div class="x"><div class="icon">
+        <div class="blocks"></div>
+        <div class="blocks"></div>
+        <div class="blocks"></div>
+        <div class="blocks"></div>
+        <div style="background: none; box-shadow:none;animation: none;color: lawngreen" class="blocks">AP</div>
+        <div class="blocks"></div>
+        <div class="blocks"></div>
+        <div class="blocks"></div>
+        <div class="blocks"></div>
+      </div></div>
+    </div></a><div class="url">AnimeTV.ml</div></h1>
         <button class="showSearch">
           <i class="bi bi-search"></i>
         </button>
@@ -37,11 +49,11 @@
         <div class="search">
           <input type="text" class="search-box" placeholder="Search Anime"><button class="searchBtn">Search</button>
         </div>
-        <h3>Top Anime</h3>
+        <h3>Most Popular</h3>
         <div class="topAiring"></div>
         <div class="btns">
-          <button class="prev">Prev 50</button>
-          <button class="next">Next 50</button>
+          <button onclick="prevTopAnimes()" class="prev">Prev 50</button>
+          <button onclick="nextTopAnimes()" class="next">Next 50</button>
         </div>
         <br><br>
       </section>

@@ -53,3 +53,4 @@ function prevTopAnimes(){
   topAiringDiv.innerHTML = "";
   getTopAnimes(Number(localStorage.getItem("topAnimeCurrentPage"))-1)
 }
+ 

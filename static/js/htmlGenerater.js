@@ -98,7 +98,7 @@ function animeInfo(mal_id) {
         <h1>${jsonResponse['title']}</h1>
         <h2>${jsonResponse['info']['english']}</h2>
         </div>
-          <div><button>Watch Now</button></div>
+          <div class='button'><button>Watch Now</button></div>
         <div class='info'>
         <p><strong>Japanese:</strong> ${jsonResponse['info']['japanese']}</p>
         <p><strong>Popularity:</strong> ${jsonResponse['popularity']}</p>

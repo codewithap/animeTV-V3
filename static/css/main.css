@@ -600,3 +600,18 @@ font-size: 0.9rem;
   color: #69CF02;
   transition: 150ms;
 }
+
+.animeDetailsInfo .button button{
+  padding: 8px 35px;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  background: #222;
+  border: 0.5px solid #000000;
+  border-radius: 50px;
+  margin: 20px 0;
+}
+
+.animeDetailsInfo .button button:hover{
+  background: #5CC228;
+  transition: 150ms;
+}

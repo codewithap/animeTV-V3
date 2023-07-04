@@ -1,7 +1,8 @@
 let topAiringDiv = document.querySelector('.topAiring');
 let next_page = document.querySelector(".next");
 let prev_page = document.querySelector(".prev");
-
+let loader = document.querySelector('.loading');
+loading(true)
 function getTopAnimes(p) {
   page = p;
   if (page == undefined) { page = Number(localStorage.getItem("topAnimeCurrentPage")) }
@@ -35,15 +36,18 @@ function getTopAnimes(p) {
       }
       next_page.disabled = false;
       prev_page.disabled = false;
+      loading(false)
     })
     .catch(error => {
       console.error('Network error occurred:', error);
       setTimeout(getTopAnimes, 1000);
+      loading(true)
     });
 }
 getTopAnimes(1);
 
 function nextTopAnimes() {
+  loading(true)
   next_page.disabled = true;
   prev_page.disabled = true;
   topAiringDiv.innerHTML = "";
@@ -51,6 +55,7 @@ function nextTopAnimes() {
 }
 
 function prevTopAnimes() {
+  loading(true)
   next_page.disabled = true;
   prev_page.disabled = true;
   topAiringDiv.innerHTML = "";
@@ -64,12 +69,11 @@ let animeDetailsDiv = document.querySelector('.animeDetails');
 function handleBackButton() {
    animeDetailsDiv.style.height = '0';
    animeDetailsDiv.style.width = '0';
-   for(let card in cards){card.disabled = false;}
 }
 
 function animeInfo(mal_id) {
+  loading(true)
   let cards = document.querySelectorAll('card');
-  for(let card in cards){card.disabled = true;}
   fetch('https://api.animetv.ml/anime/' + (mal_id), { method: 'GET' }).then(response => {
       if (response.ok) { return response.json(); }
       throw new Error('Request failed!');
@@ -82,13 +86,22 @@ function animeInfo(mal_id) {
         <img src='${jsonResponse["img"]}'>
         </div>`;
       animeDetailsDiv.innerHTML = html;
+      loading(false)
     }).catch(error => {
       console.error('Network error occurred:', error);
       setTimeout(animeInfo(mal_id), 1000);
+      loading(true)
     });
-  
-  // Update the URL to include the anime details
   history.pushState(null, null, `/anime/${mal_id}`);
-  // Attach the event listener for the mobile back button
   window.addEventListener('popstate', handleBackButton);
+  
+}
+
+
+function loading(x){
+  if(x){
+    loader.style.display = 'flex';
+  } else if(!x) {
+    loader.style.display = 'none';
+  }
 }

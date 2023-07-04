@@ -1,7 +1,6 @@
 let topAiringDiv = document.querySelector('.topAiring');
 let next_page = document.querySelector(".next");
 let prev_page = document.querySelector(".prev");
-history.pushState(null, null, `/`);
 
 function getTopAnimes(p) {
   page = p;
@@ -61,16 +60,14 @@ function prevTopAnimes() {
 // show Anime Info
 animeDetailsDiv = document.querySelector('.animeDetails');
 
-
 // Add event listener for the mobile back button
-window.addEventListener('popstate', function() {
-  // Close the animeDetailsDiv
-  animeDetailsDiv.style.display = 'none';
-});
+function handleBackButton() {
+   animeDetailsDiv.style.height = 'none';
+   animeDetailsDiv.style.width = 'none';
+}
 
 function animeInfo(mal_id) {
-  fetch('https://api.animetv.ml/anime/' + (mal_id), { method: 'GET' })
-    .then(response => {
+  fetch('https://api.animetv.ml/anime/' + (mal_id), { method: 'GET' }).then(response => {
       if (response.ok) { return response.json(); }
       throw new Error('Request failed!');
     }).then(jsonResponse => {
@@ -89,5 +86,6 @@ function animeInfo(mal_id) {
   
   // Update the URL to include the anime details
   history.pushState(null, null, `/anime/${mal_id}`);
+  // Attach the event listener for the mobile back button
+  window.addEventListener('popstate', handleBackButton);
 }
-

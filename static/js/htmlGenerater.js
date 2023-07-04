@@ -62,8 +62,8 @@ animeDetailsDiv = document.querySelector('.animeDetails');
 
 // Add event listener for the mobile back button
 function handleBackButton() {
-   animeDetailsDiv.style.height = 'none';
-   animeDetailsDiv.style.width = 'none';
+   animeDetailsDiv.style.height = '0';
+   animeDetailsDiv.style.width = '0';
 }
 
 function animeInfo(mal_id) {

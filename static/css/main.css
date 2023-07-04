@@ -86,6 +86,7 @@ body{
   overflow: hidden;
   transition: 100ms ease-in-out;
   padding: 0 5px;
+  z-index: 900;
 }
 
 .search-box{
@@ -255,8 +256,6 @@ font-size: 0.9rem;
   font-size: 2.5rem;
 }
 
-
-
 .active {
   color: #00FF28 !important;
 }
@@ -340,14 +339,14 @@ font-size: 0.9rem;
   background: #FF1B00;
   box-shadow: inset 0px 1px 1.5px #FF604E,
               inset 0px -.8px 1.5px #610A00;
-  animation: logoAnimationRed 3s linear infinite;
+  animation: logoAnimationBlue 3s linear infinite;
 }
 
 .icon .blocks:nth-child(odd) {
   background: #0061FF;
   box-shadow: inset 0px 1px 1.5px #58A2FF,
               inset 0px -0.5px 0.8px #003A77;
-  animation: logoAnimationBlue 3s linear infinite;
+  animation: logoAnimationRed 3s linear infinite;
 }
 
 @keyframes logoBorder{
@@ -404,4 +403,43 @@ font-size: 0.9rem;
     box-shadow: inset 0px 1px 1.5px #FF604E,
       inset 0px -0.5px 0.8px #610A00;
 }
+}
+
+.animeDetails{
+  height: 0;
+  width: 0;
+  z-index: 500;
+  background: #fff;
+  position: fixed;
+  top: 80px;
+  transition: 250ms;
+  overflow: hidden;
+}
+
+.animeDetailsBg{
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+ position: absolute;
+ width: 110%;
+ height: 110%;
+ filter: blur(30px);
+}
+
+.animeDetailsInfo{
+  z-index: 800;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.animeDetailsInfo img{
+  width: 180px;
+  height: 250px;
+  border-radius: 6px;
+  border: 0.3px solid #888;
 }

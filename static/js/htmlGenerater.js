@@ -82,8 +82,14 @@ function animeInfo(mal_id) {
       animeDetailsDiv.style.height = 'calc(100% - 80px)';
       animeDetailsDiv.style.width = '100%';
       let html = `<div style="background: url('${jsonResponse["img"]}')" class="animeDetailsBg"></div>
-        <div class='animeDetailsInfo'><br>
-        <img src='${jsonResponse["img"]}'>
+        <div class='animeDetailsInfo'>
+        <div class='pages'>
+        <button>Info</button>
+        <button>Characters</button>
+        <button>Episodes</button>
+        <button>Theme Songs</button>
+        </div>
+        <br><img src='${jsonResponse["img"]}'>
         <div class='titles'>
         <h1>${jsonResponse['title']}</h1>
         <h2>${jsonResponse['info']['english']}</h2>
@@ -94,10 +100,10 @@ function animeInfo(mal_id) {
         <p><strong>Popularity:</strong> ${jsonResponse['popularity']}</p>
         <p><strong>Rank: </strong>${jsonResponse['rank']}</p>
         <p><strong>Type: </strong> ${jsonResponse['info']['type']}</p>
+        <p><strong>Episodes: </strong> ${jsonResponse['info']['episodes']}</p>
         <p><strong>Duration:</strong> ${jsonResponse['info']['duration']}</p>
         <p><strong>Status:</strong> ${jsonResponse['info']['status']}</p>
         <p><strong>Aired:</strong> ${jsonResponse['info']['aired']}</p>
-        <p><strong>Episodes: </strong> ${jsonResponse['info']['episodes']}</p>
         <p><strong>MAL Score: </strong> ${jsonResponse['score']}</p>
         <p><strong>Studios:</strong> ${jsonResponse['info']['studios']}</p>
         <strong>Overview:</strong>

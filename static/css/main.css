@@ -583,3 +583,28 @@ font-size: 0.9rem;
 .animeDetailsInfo .info strong{
   color: #FFFFFF;
 }
+
+.animeDetailsInfo .pages{
+  display: flex;
+  width: 100%;
+  border-bottom: 3px solid #80FF00A6;
+}
+
+.animeDetailsInfo .pages button{
+  background: none;
+  border: none;
+  color:#fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border: 3px solid #D0D0D0;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  padding: 5px 15px;
+}
+
+.animeDetailsInfo .pages button:hover{
+  background: #00000061;
+  color: #69CF02;
+  transition: 150ms;
+}

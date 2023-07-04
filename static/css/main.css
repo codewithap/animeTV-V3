@@ -559,17 +559,6 @@ font-size: 0.9rem;
   text-align: center;
 }
 
-.animeDetailsInfo .desc{
-  height: 200px;
-  overflow-y: auto;
-  background: #00000040;
-  color: #D4D4D4;
-  font-weight: 100;
-  padding: 8px;
-  border-radius: 3px;
-  margin: auto;
-}
-
 .animeDetailsInfo .info{
   padding: 10px 20px;
   margin: 5px;
@@ -587,16 +576,19 @@ font-size: 0.9rem;
 .animeDetailsInfo .pages{
   display: flex;
   width: 100%;
-  border-bottom: 3px solid #80FF00A6;
+  border-bottom: 3px solid #B7B7B74D;
+  background: #0000004D;
+  position: fixed;
+  top: 80px;
 }
 
 .animeDetailsInfo .pages button{
-  background: none;
+  background: #00000061;
   border: none;
   color:#fff;
   font-weight: bold;
   font-size: 1rem;
-  border: 3px solid #D0D0D0;
+  border: 3px solid #B7B7B74D;
   border-top: none;
   border-bottom: none;
   border-left: none;

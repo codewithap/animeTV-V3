@@ -19,11 +19,15 @@ function getTopAnimes(p) {
 
       if (jsonResponse["pagination"]["next_page"]) {
         next_page.style.display = "block";
+      } else if (!jsonResponse["pagination"]["next_page"]) {
+        next_page.style.display = "none";
       }
       if (jsonResponse["pagination"]["prev_page"]) {
         prev_page.style.display = "block";
+      } else if(!jsonResponse["pagination"]["prev_page"]){
+        prev_page.style.display = "none";
       }
-      if (arr.length == 0) { getTopAnimes(page) }
+      if (arr.length == 0) { getTopAnimes(page)}
       for (let i = 0; i < arr.length; i++) {
         let html = `
           <div class="card"><span onclick='animeInfo("${arr[i]['mal_id']}")'><strong style="width: ${5 + arr[i]["rank"].length}ch;height: ${4 + arr[i]["rank"].length}ch;">#${arr[i]["rank"]}</strong></span>
@@ -67,8 +71,7 @@ let animeDetailsDiv = document.querySelector('.animeDetails');
 
 // Add event listener for the mobile back button
 function handleBackButton() {
-   animeDetailsDiv.style.height = '0';
-   animeDetailsDiv.style.width = '0';
+   animeDetailsDiv.style.display = 'none';
 }
 
 function animeInfo(mal_id) {
@@ -81,20 +84,21 @@ function animeInfo(mal_id) {
       console.log(jsonResponse)
       animeDetailsDiv.style.height = 'calc(100% - 80px)';
       animeDetailsDiv.style.width = '100%';
+      animeDetailsDiv.style.display = 'block';
       let html = `<div style="background: url('${jsonResponse["img"]}')" class="animeDetailsBg"></div>
         <div class='animeDetailsInfo'>
         <div class='pages'>
-        <button>Info</button>
+        <button class="active">Info</button>
         <button>Characters</button>
         <button>Episodes</button>
         <button>Theme Songs</button>
-        </div>
+        </div><br>
         <br><img src='${jsonResponse["img"]}'>
         <div class='titles'>
         <h1>${jsonResponse['title']}</h1>
         <h2>${jsonResponse['info']['english']}</h2>
         </div>
-        
+          <div><button>Watch Now</button></div>
         <div class='info'>
         <p><strong>Japanese:</strong> ${jsonResponse['info']['japanese']}</p>
         <p><strong>Popularity:</strong> ${jsonResponse['popularity']}</p>
@@ -106,8 +110,7 @@ function animeInfo(mal_id) {
         <p><strong>Aired:</strong> ${jsonResponse['info']['aired']}</p>
         <p><strong>MAL Score: </strong> ${jsonResponse['score']}</p>
         <p><strong>Studios:</strong> ${jsonResponse['info']['studios']}</p>
-        <strong>Overview:</strong>
-        <p class='desc'>${jsonResponse['description']}</div>
+        <p><strong>Overview:</strong> ${jsonResponse['description']}</div>
         </p>
         </div>`;
       animeDetailsDiv.innerHTML = html;

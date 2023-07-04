@@ -59,6 +59,14 @@ function prevTopAnimes() {
 
 // show Anime Info
 animeDetailsDiv = document.querySelector('.animeDetails');
+
+
+// Add event listener for the mobile back button
+window.addEventListener('popstate', function() {
+  // Close the animeDetailsDiv
+  animeDetailsDiv.style.display = 'none';
+});
+
 function animeInfo(mal_id) {
   fetch('https://api.animetv.ml/anime/' + (mal_id), { method: 'GET' })
     .then(response => {
@@ -66,16 +74,19 @@ function animeInfo(mal_id) {
       throw new Error('Request failed!');
     }).then(jsonResponse => {
       console.log(jsonResponse)
-      animeDetailsDiv.style.height='calc(100% - 80px)';
-      animeDetailsDiv.style.width='100%';
+      animeDetailsDiv.style.height = 'calc(100% - 80px)';
+      animeDetailsDiv.style.width = '100%';
       let html = `<div style="background: url('${jsonResponse["img"]}')" class="animeDetailsBg"></div>
-      <div class='animeDetailsInfo'><br>
-      <img src='${jsonResponse["img"]}'>
-      </div>`;
+        <div class='animeDetailsInfo'><br>
+        <img src='${jsonResponse["img"]}'>
+        </div>`;
       animeDetailsDiv.innerHTML = html;
     }).catch(error => {
       console.error('Network error occurred:', error);
       setTimeout(animeInfo(mal_id), 1000);
     });
+  
+  // Update the URL to include the anime details
+  history.pushState(null, null, `/anime/${mal_id}`);
 }
 

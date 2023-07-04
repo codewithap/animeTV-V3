@@ -84,6 +84,25 @@ function animeInfo(mal_id) {
       let html = `<div style="background: url('${jsonResponse["img"]}')" class="animeDetailsBg"></div>
         <div class='animeDetailsInfo'><br>
         <img src='${jsonResponse["img"]}'>
+        <div class='titles'>
+        <h1>${jsonResponse['title']}</h1>
+        <h2>${jsonResponse['info']['english']}</h2>
+        </div>
+        
+        <div class='info'>
+        <p><strong>Japanese:</strong> ${jsonResponse['info']['japanese']}</p>
+        <p><strong>Popularity:</strong> ${jsonResponse['popularity']}</p>
+        <p><strong>Rank: </strong>${jsonResponse['rank']}</p>
+        <p><strong>Type: </strong> ${jsonResponse['info']['type']}</p>
+        <p><strong>Duration:</strong> ${jsonResponse['info']['duration']}</p>
+        <p><strong>Status:</strong> ${jsonResponse['info']['status']}</p>
+        <p><strong>Aired:</strong> ${jsonResponse['info']['aired']}</p>
+        <p><strong>Episodes: </strong> ${jsonResponse['info']['episodes']}</p>
+        <p><strong>MAL Score: </strong> ${jsonResponse['score']}</p>
+        <p><strong>Studios:</strong> ${jsonResponse['info']['studios']}</p>
+        <strong>Overview:</strong>
+        <p class='desc'>${jsonResponse['description']}</div>
+        </p>
         </div>`;
       animeDetailsDiv.innerHTML = html;
       loading(false)
@@ -94,9 +113,7 @@ function animeInfo(mal_id) {
     });
   history.pushState(null, null, `/anime/${mal_id}`);
   window.addEventListener('popstate', handleBackButton);
-  
 }
-
 
 function loading(x){
   if(x){

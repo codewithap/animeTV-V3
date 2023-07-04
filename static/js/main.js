@@ -28,4 +28,3 @@ showSearchBtn.addEventListener('click', () => {
     showSearchBtn.querySelector('i').classList.remove('active')
   }
 });
-

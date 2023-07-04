@@ -1,6 +1,7 @@
 let topAiringDiv = document.querySelector('.topAiring');
 let next_page = document.querySelector(".next");
 let prev_page = document.querySelector(".prev");
+history.pushState(null, null, `/`);
 
 function getTopAnimes(p) {
   page = p;

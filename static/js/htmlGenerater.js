@@ -58,15 +58,18 @@ function prevTopAnimes() {
 }
 
 // show Anime Info
-animeDetailsDiv = document.querySelector('.animeDetails');
+let animeDetailsDiv = document.querySelector('.animeDetails');
 
 // Add event listener for the mobile back button
 function handleBackButton() {
    animeDetailsDiv.style.height = '0';
    animeDetailsDiv.style.width = '0';
+   for(let card in cards){card.disabled = false;}
 }
 
 function animeInfo(mal_id) {
+  let cards = document.querySelectorAll('card');
+  for(let card in cards){card.disabled = true;}
   fetch('https://api.animetv.ml/anime/' + (mal_id), { method: 'GET' }).then(response => {
       if (response.ok) { return response.json(); }
       throw new Error('Request failed!');

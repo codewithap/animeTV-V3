@@ -81,10 +81,17 @@ function animeInfo(mal_id) {
       if (response.ok) { return response.json(); }
       throw new Error('Request failed!');
     }).then(jsonResponse => {
-      console.log(jsonResponse)
       animeDetailsDiv.style.height = 'calc(100% - 80px)';
       animeDetailsDiv.style.width = '100%';
       animeDetailsDiv.style.display = 'block';
+      let linksHtml = '';
+      for(let x in jsonResponse['external_links']){
+        if (jsonResponse['external_links'][x]['data'] == '#') {}
+        else{
+        let y = `&nbsp;<a target='_blank' href='${jsonResponse['external_links'][x]['data']}'>${jsonResponse['external_links'][x]['name']}</a>&nbsp;&nbsp;&nbsp;`
+        linksHtml += y;
+        }
+      }
       let html = `<div style="background: url('${jsonResponse["img"]}')" class="animeDetailsBg"></div>
         <div class='animeDetailsInfo'>
         <div class='pages'>
@@ -100,6 +107,7 @@ function animeInfo(mal_id) {
         </div>
           <div class='button'><button>Watch Now</button></div>
         <div class='info'>
+        <p class='externalLinks'><strong>External Links:</strong> ${linksHtml}</p>
         <p><strong>Japanese:</strong> ${jsonResponse['info']['japanese']}</p>
         <p><strong>Popularity:</strong> ${jsonResponse['popularity']}</p>
         <p><strong>Rank: </strong>${jsonResponse['rank']}</p>
@@ -110,8 +118,8 @@ function animeInfo(mal_id) {
         <p><strong>Aired:</strong> ${jsonResponse['info']['aired']}</p>
         <p><strong>MAL Score: </strong> ${jsonResponse['score']}</p>
         <p><strong>Studios:</strong> ${jsonResponse['info']['studios']}</p>
-        <p><strong>Overview:</strong> ${jsonResponse['description']}</div>
-        </p>
+        <p><strong>Overview:</strong> ${jsonResponse['description']}</p>
+        </div>
         </div>`;
       animeDetailsDiv.innerHTML = html;
       loading(false)

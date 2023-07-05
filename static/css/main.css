@@ -615,3 +615,13 @@ font-size: 0.9rem;
   background: #5CC228;
   transition: 150ms;
 }
+
+.externalLinks a{
+  color: #0067FD;
+}
+
+.externalLinks{
+  display: flex;
+  flex-wrap: wrap;
+  
+}

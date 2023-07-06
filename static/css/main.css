@@ -623,5 +623,36 @@ font-size: 0.9rem;
 .externalLinks{
   display: flex;
   flex-wrap: wrap;
+}
+
+.animeInfo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.songs{
+  width: 90%;
+  height: 100%;
+  overflow-y: auto; 
+  display: flex;
+  align-items: center!important;
+  justify-content: center!important;
+  flex-direction: row;
+}
+
+.songs iframe{
+  width: 100%;
+  height: 100px;
   
+}
+
+.animeDetailsInfo .button{
+  display: box;
+  width:100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

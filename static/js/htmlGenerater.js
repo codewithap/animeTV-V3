@@ -55,25 +55,21 @@ function nextTopAnimes() {
   next_page.disabled = true;
   prev_page.disabled = true;
   topAiringDiv.innerHTML = "";
-  getTopAnimes(Number(localStorage.getItem("topAnimeCurrentPage")) + 1)
+  getTopAnimes(Number(localStorage.getItem("topAnimeCurrentPage")) + 1);
 }
-
 function prevTopAnimes() {
   loading(true)
   next_page.disabled = true;
   prev_page.disabled = true;
   topAiringDiv.innerHTML = "";
-  getTopAnimes(Number(localStorage.getItem("topAnimeCurrentPage")) - 1)
+  getTopAnimes(Number(localStorage.getItem("topAnimeCurrentPage")) - 1);
 }
 
 // show Anime Info
 let animeDetailsDiv = document.querySelector('.animeDetails');
-
-// Add event listener for the mobile back button
 function handleBackButton() {
    animeDetailsDiv.style.display = 'none';
 }
-
 function animeInfo(mal_id) {
   loading(true)
   let cards = document.querySelectorAll('card');
@@ -95,30 +91,35 @@ function animeInfo(mal_id) {
       let html = `<div style="background: url('${jsonResponse["img"]}')" class="animeDetailsBg"></div>
         <div class='animeDetailsInfo'>
         <div class='pages'>
-        <button class="active">Info</button>
+        <button onclick='animeInfoShowHide()' class="active">Info</button>
         <button>Characters</button>
         <button>Episodes</button>
-        <button>Theme Songs</button>
-        </div><br>
-        <br><img src='${jsonResponse["img"]}'>
-        <div class='titles'>
-        <h1>${jsonResponse['title']}</h1>
-        <h2>${jsonResponse['info']['english']}</h2>
-        </div>
-          <div class='button'><button>Watch Now</button></div>
-        <div class='info'>
-        <p class='externalLinks'><strong>External Links:</strong> ${linksHtml}</p>
-        <p><strong>Japanese:</strong> ${jsonResponse['info']['japanese']}</p>
-        <p><strong>Popularity:</strong> ${jsonResponse['popularity']}</p>
-        <p><strong>Rank: </strong>${jsonResponse['rank']}</p>
-        <p><strong>Type: </strong> ${jsonResponse['info']['type']}</p>
-        <p><strong>Episodes: </strong> ${jsonResponse['info']['episodes']}</p>
-        <p><strong>Duration:</strong> ${jsonResponse['info']['duration']}</p>
-        <p><strong>Status:</strong> ${jsonResponse['info']['status']}</p>
-        <p><strong>Aired:</strong> ${jsonResponse['info']['aired']}</p>
-        <p><strong>MAL Score: </strong> ${jsonResponse['score']}</p>
-        <p><strong>Studios:</strong> ${jsonResponse['info']['studios']}</p>
-        <p><strong>Overview:</strong> ${jsonResponse['description']}</p>
+        <button onclick='showSongs("${jsonResponse["theme_songs"]}")'>Theme Songs</button>
+        </div><br><br>
+        <div class='episodes'></div>
+        <div class='songs'></div>
+        <div class='charInfo'></div>
+        <div class='animeInfo'>
+          <img style='margin:auto;display:block' src='${jsonResponse["img"]}'>
+          <div class='titles'>
+          <h1>${jsonResponse['title']}</h1>
+          <h2>${jsonResponse['info']['english']}</h2>
+          </div>
+            <div class='button'><button>Watch Now</button></div>
+          <div class='info'>
+          <p class='externalLinks'><strong>External Links:</strong> ${linksHtml}</p>
+          <p><strong>Japanese:</strong> ${jsonResponse['info']['japanese']}</p>
+          <p><strong>Popularity:</strong> ${jsonResponse['popularity']}</p>
+          <p><strong>Rank: </strong>${jsonResponse['rank']}</p>
+          <p><strong>Type: </strong> ${jsonResponse['info']['type']}</p>
+          <p><strong>Episodes: </strong> ${jsonResponse['info']['episodes']}</p>
+          <p><strong>Duration:</strong> ${jsonResponse['info']['duration']}</p>
+          <p><strong>Status:</strong> ${jsonResponse['info']['status']}</p>
+          <p><strong>Aired:</strong> ${jsonResponse['info']['aired']}</p>
+          <p><strong>MAL Score: </strong> ${jsonResponse['score']}</p>
+          <p><strong>Studios:</strong> ${jsonResponse['info']['studios']}</p>
+          <p><strong>Overview:</strong> ${jsonResponse['description']}</p>
+          </div>
         </div>
         </div>`;
       animeDetailsDiv.innerHTML = html;
@@ -131,6 +132,53 @@ function animeInfo(mal_id) {
   history.pushState(null, null, `/anime/${mal_id}`);
   window.addEventListener('popstate', handleBackButton);
 }
+
+//function showEpisodes(){
+  
+//}
+
+function animeInfoShowHide(){
+  let songsDiv = document.querySelector('.songs');
+  let charInfoDiv = document.querySelector('.charInfo');
+  let episodesDiv = document.querySelector('.episodes');
+  let animeInfoDiv = document.querySelector('.animeInfo');
+  let buttons = document.querySelectorAll('.pages button');
+  songsDiv.style.display = 'none';
+  charInfoDiv.style.display = 'none';
+  episodesDiv.style.display = 'none';
+  animeInfoDiv.style.display = 'block';
+  buttons[0].classList.add('active');
+  buttons[1].classList.remove('active');
+  buttons[2].classList.remove('active');
+  buttons[3].classList.remove('active');
+}
+
+function showSongs(songs){
+  let songsArr = songs.split(',');
+  let songsDiv = document.querySelector('.songs');
+  let charInfoDiv = document.querySelector('.charInfo');
+  let episodesDiv = document.querySelector('.episodes');
+  let animeInfoDiv = document.querySelector('.animeInfo');
+  let buttons = document.querySelectorAll('.pages button');
+  console.log(buttons)
+  songsDiv.style.display = 'block';
+  charInfoDiv.style.display = 'none';
+  episodesDiv.style.display = 'none';
+  animeInfoDiv.style.display = 'none';
+  buttons[0].classList.remove('active');
+  buttons[1].classList.remove('active');
+  buttons[2].classList.remove('active');
+  buttons[3].classList.add('active');
+  
+  let html = '';
+  for(let song in songsArr){
+    z = `<iframe style="border-radius:10px; margin:0;" src="https://open.spotify.com/embed/track/${songsArr[song]}" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+    html += z;
+  }
+  songsDiv.innerHTML = html;
+}
+
+
 
 function loading(x){
   if(x){

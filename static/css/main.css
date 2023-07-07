@@ -580,6 +580,7 @@ font-size: 0.9rem;
   background: #0000004D;
   position: fixed;
   top: 80px;
+  z-index: 1000;
 }
 
 .animeDetailsInfo .pages button{
@@ -655,4 +656,42 @@ font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.charInfo{
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.charInfoCard{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 15px auto;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: .5px solid #000;
+}
+
+.voiceActors,
+.voiceActor,
+.CharInfo{
+  display: flex;
+  flex-direction: column;
+}
+
+.voiceActor small,
+.voiceActor strong,
+.voiceActor img{
+  margin-left: auto;
+}
+
+.voiceActor img,
+.CharInfo img{
+  width: 85px;
+  height: 120px;
 }

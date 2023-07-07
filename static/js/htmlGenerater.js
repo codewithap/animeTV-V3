@@ -92,7 +92,7 @@ function animeInfo(mal_id) {
         <div class='animeDetailsInfo'>
         <div class='pages'>
         <button onclick='animeInfoShowHide()' class="active">Info</button>
-        <button>Characters</button>
+        <button onclick='showChars("${mal_id}")'>Characters</button>
         <button>Episodes</button>
         <button onclick='showSongs("${jsonResponse["theme_songs"]}")'>Theme Songs</button>
         </div><br><br>
@@ -154,13 +154,13 @@ function animeInfoShowHide(){
 }
 
 function showSongs(songs){
+  loading(true)
   let songsArr = songs.split(',');
   let songsDiv = document.querySelector('.songs');
   let charInfoDiv = document.querySelector('.charInfo');
   let episodesDiv = document.querySelector('.episodes');
   let animeInfoDiv = document.querySelector('.animeInfo');
   let buttons = document.querySelectorAll('.pages button');
-  console.log(buttons)
   songsDiv.style.display = 'block';
   charInfoDiv.style.display = 'none';
   episodesDiv.style.display = 'none';
@@ -174,10 +174,74 @@ function showSongs(songs){
   for(let song in songsArr){
     z = `<iframe style="border-radius:10px; margin:0;" src="https://open.spotify.com/embed/track/${songsArr[song]}" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
     html += z;
+    loading(false)
   }
   songsDiv.innerHTML = html;
 }
 
+function showChars(mal_id){
+  loading(true);
+  let songsDiv = document.querySelector('.songs');
+  let charInfoDiv = document.querySelector('.charInfo');
+  let episodesDiv = document.querySelector('.episodes');
+  let animeInfoDiv = document.querySelector('.animeInfo');
+  let buttons = document.querySelectorAll('.pages button');
+  songsDiv.style.display = 'none';
+  charInfoDiv.style.display = 'block';
+  episodesDiv.style.display = 'none';
+  animeInfoDiv.style.display = 'none';
+  buttons[0].classList.remove('active');
+  buttons[1].classList.add('active');
+  buttons[2].classList.remove('active');
+  buttons[3].classList.remove('active');
+  if(sessionStorage.getItem(`${mal_id}Chars`) == null){
+    fetch('https://api.animetv.ml/anime/' + (mal_id) +'/characters', { method: 'GET' }
+    ).then(response => {
+      if (response.ok) { return response.json();}
+      throw new Error('Request failed!');
+    }).then(jsonResponse => {
+      if (jsonResponse['data'].length == 0){console.error('Network error!');showChars(mal_id);loading(true);}
+      let charInfoHtml = '';
+      for(let x in jsonResponse['data']){
+        let data = jsonResponse['data'][x];
+        let voice_actors_html = '';
+        for (let i in data['voice_actors']) {
+          let voice_actor = data['voice_actors'][i];
+          let voice_actor_html = `
+            <div class='voiceActor'>
+              <img src=${voice_actor['img']}>
+              <small>${voice_actor['lang']}</small>
+              <strong>${voice_actor['name']}</strong>
+            </div>
+          `;
+          voice_actors_html += voice_actor_html;
+        }
+        card = `
+          <div class='charInfoCard'>
+            <div class=CharInfo>
+              <img src=${data['img']}>
+              <small>${data['type']}</small>
+              <strong>${data['name']}</strong>
+            </div>
+            <div class='voiceActors'>
+              ${voice_actors_html}
+            </div>
+          </div>
+        `;
+        charInfoHtml += card;
+      }
+      html = `<br><br>
+        ${charInfoHtml}
+      `;
+      charInfoDiv.innerHTML = html;
+      loading(false);
+    }).catch(error => {
+      console.error('Network error occurred:', error);
+      setTimeout(showChars(mal_id), 1000);
+      loading(true);
+    });
+  }
+}
 
 
 function loading(x){

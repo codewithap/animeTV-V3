@@ -93,7 +93,7 @@ function animeInfo(mal_id) {
         <div class='pages'>
         <button onclick='animeInfoShowHide()' class="active">Info</button>
         <button onclick='showChars("${mal_id}")'>Characters</button>
-        <button>Episodes</button>
+        <button onclick='getEpisodes("${jsonResponse['']}")'>Episodes</button>
         <button onclick='showSongs("${jsonResponse["theme_songs"]}")'>Theme Songs</button>
         </div><br><br>
         <div class='episodes'></div>
@@ -242,12 +242,29 @@ function showChars(mal_id){
     });
   }
 }
-
-
 function loading(x){
   if(x){
     loader.style.display = 'flex';
   } else if(!x) {
     loader.style.display = 'none';
   }
+}
+
+function getEpisodes(name){
+  loading(true);
+  let songsDiv = document.querySelector('.songs');
+  let charInfoDiv = document.querySelector('.charInfo');
+  let episodesDiv = document.querySelector('.episodes');
+  let animeInfoDiv = document.querySelector('.animeInfo');
+  let buttons = document.querySelectorAll('.pages button');
+  songsDiv.style.display = 'none';
+  charInfoDiv.style.display = 'none';
+  episodesDiv.style.display = 'block';
+  animeInfoDiv.style.display = 'none';
+  buttons[0].classList.remove('active');
+  buttons[1].classList.remove('active');
+  buttons[2].classList.add('active');
+  buttons[3].classList.remove('active');
+  fetch
+  
 }

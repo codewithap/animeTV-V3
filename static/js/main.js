@@ -28,3 +28,27 @@ showSearchBtn.addEventListener('click', () => {
     showSearchBtn.querySelector('i').classList.remove('active')
   }
 });
+
+
+let css = `
+  height: 400px;
+  background-color: #00000033;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(45px, 65px));grid-template-columns: repeat(auto-fit, minmax(65px, 65px));
+  padding: 10px;
+  overflow: auto;
+`;
+
+function showHideSubDub(){
+  let subEpis = document.querySelector(".subEpis");
+  let dubEpis = document.querySelector(".dubEpis");
+  let select = document.querySelector(".toogleSubDub select").value;
+  if(select == "dub"){
+    subEpis.style.display = "none";
+    dubEpis.style.display = "grid";
+  } else if(select == "sub"){
+    subEpis.style.display = "grid";
+    dubEpis.style.display = "none";
+  }
+}
+

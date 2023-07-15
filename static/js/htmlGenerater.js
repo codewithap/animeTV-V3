@@ -93,7 +93,7 @@ function animeInfo(mal_id) {
         <div class='pages'>
         <button onclick='animeInfoShowHide()' class="active">Info</button>
         <button onclick='showChars("${mal_id}")'>Characters</button>
-        <button onclick='getEpisodes("${jsonResponse['']}")'>Episodes</button>
+        <button onclick='getEpisodes("${jsonResponse['title']}")'>Episodes</button>
         <button onclick='showSongs("${jsonResponse["theme_songs"]}")'>Theme Songs</button>
         </div><br><br>
         <div class='episodes'></div>
@@ -132,10 +132,6 @@ function animeInfo(mal_id) {
   history.pushState(null, null, `/anime/${mal_id}`);
   window.addEventListener('popstate', handleBackButton);
 }
-
-//function showEpisodes(){
-  
-//}
 
 function animeInfoShowHide(){
   let songsDiv = document.querySelector('.songs');
@@ -251,7 +247,7 @@ function loading(x){
 }
 
 function getEpisodes(name){
-  loading(true);
+  // loading(true);
   let songsDiv = document.querySelector('.songs');
   let charInfoDiv = document.querySelector('.charInfo');
   let episodesDiv = document.querySelector('.episodes');
@@ -265,6 +261,6 @@ function getEpisodes(name){
   buttons[1].classList.remove('active');
   buttons[2].classList.add('active');
   buttons[3].classList.remove('active');
-  fetch
+  getEpisodesList(name);
   
-}
+} 

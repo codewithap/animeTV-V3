@@ -9,10 +9,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <!-- Shaka Player ui compiled library: -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.7/shaka-player.ui.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.7/controls.min.css"/>
   <!---  stylesheets  -->
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="static/css/main.css?v=1">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+  <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
   <title>AnimeTV | Best website for watch anime online</title>
 </head>
 <body>
@@ -20,7 +24,7 @@
     <nav class="navigation">
       <div class="nav-bar">
           <button class="nav-menu-open"><i class="bi bi-list"></i></button>
-        <h1 style="width: 200px;justify-content: space-between; display: flex;align-items: center; flex-direction: row margin-top: 10px;"><a style="" href="https://v2.animetv.ml"><div class="loader">
+        <h1 style="width: 200px;justify-content: space-between; display: flex;align-items: center; flex-direction: row;"><a href="https://v2.animetv.ml"><div class="loader">
       <div class="x"><div class="icon">
         <div class="blocks"></div>
         <div class="blocks"></div>
@@ -69,8 +73,15 @@
     </main>
   </header>
   <!--  scripts  -->
-  <script src="static/js/htmlGenerater.js?v=1"></script>
-  <script src="static/js/main.js?v=1"></script>
+  
+  <script src="{{url_for('static', filename='js/htmlGenerater.js')}}"></script>
+  <script src="{{url_for('static', filename='js/main.js')}}"></script>
+  <script src="{{url_for('static', filename='js/epis.js')}}"></script>
+  <script>
+    let malID = "{{mal_id}}";
+    console.log(malID.length)
+    if(malID.length != 0){animeInfo(malID)}
+
+  </script>
 </body>
 </html>
- 

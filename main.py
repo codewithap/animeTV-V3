@@ -6,5 +6,9 @@ app = Flask(__name__)
 def home():
     return render_template("main.html")
 
+@app.route("/anime/<id>")
+def anime(id):
+    return render_template("main.html", mal_id = id)
+
 if __name__ == "__main__":
-    app.run(debug=True,host="0.0.0.0", port=80)
+    app.run(debug=True,host="0.0.0.0")

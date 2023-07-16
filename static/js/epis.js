@@ -81,6 +81,9 @@ function getEpisodesList(name){
                       button = `<button class="loadEPBtn" onclick="loadEp('${id}','${poster}')">${Number(x)+1}</button>`;
                       dubEpis.innerHTML += button;
                   };
+                  document.querySelectorAll(".loadEPBtn")[0].click();
+                  // document.querySelectorAll(".loadEPBtn")[0].click();
+                  // console.log(document.querySelectorAll(".loadEPBtn"))
                 }).catch(error => {
                   console.error('Network error occurred:', error);
                   if(retries < 5){
@@ -96,9 +99,10 @@ function getEpisodesList(name){
           };});
 };getDub();
 // loading(false)
+
 }
 
-function loadEp(gogoid,poster){loading(true)
+function loadEp(gogoid,poster){loading(true);
 	let CurrentEp =  document.querySelector(".CurrentEp span");
 	CurrentEp.innerHTML = gogoid.replaceAll("-", " ");
   let video = document.querySelector(".video");

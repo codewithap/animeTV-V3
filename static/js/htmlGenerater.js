@@ -105,7 +105,7 @@ function animeInfo(mal_id) {
           <h1>${jsonResponse['title']}</h1>
           <h2>${jsonResponse['info']['english']}</h2>
           </div>
-            <div class='button'><button>Watch Now</button></div>
+            <div class='button'><button onclick='getEpisodes("${jsonResponse['title']}")'>Watch Now</button></div>
           <div class='info'>
           <p class='externalLinks'><strong>External Links:</strong> ${linksHtml}</p>
           <p><strong>Japanese:</strong> ${jsonResponse['info']['japanese']}</p>
@@ -247,7 +247,7 @@ function loading(x){
 }
 
 function getEpisodes(name){
-  // loading(true);
+  loading(true);
   let songsDiv = document.querySelector('.songs');
   let charInfoDiv = document.querySelector('.charInfo');
   let episodesDiv = document.querySelector('.episodes');
@@ -262,5 +262,4 @@ function getEpisodes(name){
   buttons[2].classList.add('active');
   buttons[3].classList.remove('active');
   getEpisodesList(name);
-  
 } 

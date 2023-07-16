@@ -15,6 +15,7 @@ function getEpisodesList(name){
       <option value="sub">Sub</option>
       <option value="dub">Dub</option>
     </select>
+    <p class="CurrentEp">You Are watching <span></span></p>
       </div>
         <div class="subEpis"></div>
         <div class="dubEpis"></div>
@@ -85,7 +86,7 @@ function getEpisodesList(name){
                   if(retries < 5){
                       setTimeout(getDubEpis(), 1000);
                       retries += 1;
-                  };});
+                  };});loading(false);
           };getDubEpis();
         }).catch(error => {
           console.error('Network error occurred:', error);
@@ -93,9 +94,13 @@ function getEpisodesList(name){
               setTimeout(getSub(), 1000);
               retry += 1;
           };});
-};getDub();}
+};getDub();
+// loading(false)
+}
 
-function loadEp(gogoid,poster){
+function loadEp(gogoid,poster){loading(true)
+	let CurrentEp =  document.querySelector(".CurrentEp span");
+	CurrentEp.innerHTML = gogoid.replaceAll("-", " ");
   let video = document.querySelector(".video");
   video.style.height = `${video.offsetWidth/1.8}px`;
   console.log(video.offsetWidth)
@@ -115,10 +120,9 @@ function loadEp(gogoid,poster){
       }).then(jsonResponse => {
         file1 = jsonResponse['source'][0]['file'];
         file2 = jsonResponse['source_bk'][0]['file'];
-        
-        console.log(file1)
-        console.log(poster)
-        console.log(file2)
+        video.innerHTML = `      
+            <iframe  src="/play?m3u8=${file1}&m3u8_2=${file2}&poster=${poster}" frameborder="0" style="width: 100%;height: 100%"></iframe>
+`;loading(false);
       }).catch(error => {
       console.error('Network error occurred:', error);
         setTimeout(getDubEpis(), 2000);
@@ -129,8 +133,13 @@ function loadEp(gogoid,poster){
       setTimeout(getDubEpis(), 2000);
     }
   );
+  
 }
 
-function loadVideoPlayer(manifestUri){
-
+function loading(x){
+  if(x){
+    loader.style.display = 'flex';
+  } else if(!x) {
+    loader.style.display = 'none';
+  }
 }

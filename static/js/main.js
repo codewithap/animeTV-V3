@@ -52,3 +52,63 @@ function showHideSubDub(){
   }
 }
 
+//  
+function loading(x){
+  if(x){
+    loader.style.display = 'flex';
+  } else if(!x) {
+    loader.style.display = 'none';
+  }
+}
+let searchBtn = document.querySelector(".searchBtn");
+searchBtn.addEventListener("click", searchEp);
+
+function handleBackButton() {
+  topAiringDiv.innerHTML = "";
+  getTopAnimes(1);
+  let text = document.querySelector("body > header > main > section > h3");
+  let btns = document.querySelector("body > header > main > section > div.btns");
+  btns.style.display = "flex";
+  text.style.display = "block";
+  document.querySelector('.animeDetails').style.display = 'none';
+}
+
+function searchEp(){
+  loading(true);
+  let searchBox = document.querySelector(".search-box");
+  let query = searchBox.value;
+  let page = 1;
+  let url = `https://api.animetv.ml/search?q=${query}&page=${page}`;
+  fetch(url, { method: 'GET' }).then(response => {
+    if (response.ok) { return response.json(); }
+    throw new Error('Request failed!');
+  }).then(jsonResponse => {
+    let box = document.querySelector(".topAiring");
+    let items = jsonResponse["items"];
+    let searchHtml = "";
+    document.querySelector("body > header > nav > div > button.showSearch").click();
+    let text = document.querySelector("body > header > main > section > h3");
+    let btns = document.querySelector("body > header > main > section > div.btns");
+    btns.style.display = "none";
+    text.style.display = "none";
+    for (let i in items){
+      let arr = jsonResponse["items"];
+      let html = `
+          <div class="card"><span onclick='animeInfo("${arr[i]['mal_id']}")'></span>
+            <div class='dark'></div>
+            <div class='bg' style='background: url("${arr[i]['img']}")' class='card-bg'></div>
+            <img class='card-img' src="${arr[i]['img']}">
+            <h4>${arr[i]['title']}</h4>
+          </div>`;
+          searchHtml += html;
+        }
+        box.innerHTML = searchHtml;
+    
+    loading(false);
+  }).catch(error => { 
+    console.error('Network error occurred:', error);
+  });
+  history.pushState(null, null, `/search?q=${query}`);
+  window.addEventListener('popstate', handleBackButton);
+}
+

@@ -15,7 +15,7 @@
   <!---  stylesheets  -->
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}?v=89">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
   <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
   <title>AnimeTV | Best website for watch anime online</title>
 </head>
@@ -44,9 +44,9 @@
     </nav>
     <main class="body">
       <div class="NavMenu">
-        <button class="navBtn1 active">Home</button>
-        <button class="topAnime">Top Animes</button>
-        <button class="support">Support/Donate</button>
+        <a href="/"><button class="navBtn1 active"><i class="bi bi-house-door-fill"></i> &nbsp;Home</button></a>
+        <button disabled class="topAnime"><i class="bi bi-save2-fill"></i> Watch List (Coming Soon)</button>
+        <a target="_blank" href="https://codewithap.vercel.app/donate"><button class="support"><i class="bi bi-cash-coin"></i> Support/Donate</button></a>
       </div>
       <div class="animeDetails">
         
@@ -74,9 +74,9 @@
   </header>
   <!--  scripts  -->
   
-  <script src="{{url_for('static', filename='js/htmlGenerater.js')}}?v=89"></script>
-  <script src="{{url_for('static', filename='js/main.js')}}?v=89"></script>
-  <script src="{{url_for('static', filename='js/epis.js')}}?v=89"></script>
+  <script src="{{url_for('static', filename='js/htmlGenerater.js')}}"></script>
+  <script src="{{url_for('static', filename='js/main.js')}}"></script>
+  <script src="{{url_for('static', filename='js/epis.js')}}"></script>
   <script>
     let malID = "{{mal_id}}";
     console.log(malID.length)

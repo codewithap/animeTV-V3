@@ -82,8 +82,6 @@ function getEpisodesList(name){
                       dubEpis.innerHTML += button;
                   };
                   document.querySelectorAll(".loadEPBtn")[0].click();
-                  // document.querySelectorAll(".loadEPBtn")[0].click();
-                  // console.log(document.querySelectorAll(".loadEPBtn"))
                 }).catch(error => {
                   console.error('Network error occurred:', error);
                   if(retries < 5){

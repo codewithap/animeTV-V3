@@ -67,8 +67,17 @@ function prevTopAnimes() {
 
 // show Anime Info
 let animeDetailsDiv = document.querySelector('.animeDetails');
-function handleBackButton() {
+
+function back() {
+  let animeDetailsDiv = document.querySelector('.animeDetails');
+  let iframe = document.querySelectorAll("iframe");
+  iframe.forEach(i => {
+    console.log(i);
+    const source = i.src;
+    i.src = '';
+ });
    animeDetailsDiv.style.display = 'none';
+   
 }
 function animeInfo(mal_id) {
   loading(true)
@@ -130,7 +139,7 @@ function animeInfo(mal_id) {
       loading(true)
     });
   history.pushState(null, null, `/anime/${mal_id}`);
-  window.addEventListener('popstate', handleBackButton);
+  window.addEventListener('popstate', back);
 }
 
 function animeInfoShowHide(){

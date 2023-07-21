@@ -7,7 +7,7 @@ function getTopAnimes(p) {
   page = p;
   if (page == undefined) { page = Number(localStorage.getItem("topAnimeCurrentPage")) }
   localStorage.setItem("topAnimeCurrentPage", page)
-  fetch('https://api.animetv.ml/topanime?type=bypopularity&page=' + String(page), { method: 'GET' })
+  fetch('https://anime-tv-v3-api.vercel.app/topanime?type=bypopularity&page=' + String(page), { method: 'GET' })
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -82,7 +82,7 @@ function back() {
 function animeInfo(mal_id) {
   loading(true)
   let cards = document.querySelectorAll('card');
-  fetch('https://api.animetv.ml/anime/' + (mal_id), { method: 'GET' }).then(response => {
+  fetch('https://anime-tv-v3-api.vercel.app/anime/' + (mal_id), { method: 'GET' }).then(response => {
       if (response.ok) { return response.json(); }
       throw new Error('Request failed!');
     }).then(jsonResponse => {
@@ -200,7 +200,7 @@ function showChars(mal_id){
   buttons[2].classList.remove('active');
   buttons[3].classList.remove('active');
   if(sessionStorage.getItem(`${mal_id}Chars`) == null){
-    fetch('https://api.animetv.ml/anime/' + (mal_id) +'/characters', { method: 'GET' }
+    fetch('https://anime-tv-v3-api.vercel.app/anime/' + (mal_id) +'/characters', { method: 'GET' }
     ).then(response => {
       if (response.ok) { return response.json();}
       throw new Error('Request failed!');

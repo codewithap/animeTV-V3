@@ -78,7 +78,7 @@ function searchEp(){
   let searchBox = document.querySelector(".search-box");
   let query = searchBox.value;
   let page = 1;
-  let url = `https://api.animetv.ml/search?q=${query}&page=${page}`;
+  let url = `https://anime-tv-v3-api.vercel.app/search?q=${query}&page=${page}`;
   fetch(url, { method: 'GET' }).then(response => {
     if (response.ok) { return response.json(); }
     throw new Error('Request failed!');
@@ -111,4 +111,3 @@ function searchEp(){
   history.pushState(null, null, `/search?q=${query}`);
   window.addEventListener('popstate', handleBackButton);
 }
-

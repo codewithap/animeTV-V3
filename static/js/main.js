@@ -61,6 +61,13 @@ function loading(x){
   }
 }
 let searchBtn = document.querySelector(".searchBtn");
+searchBox.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    searchBtn.click();
+  }
+});
+
 searchBtn.addEventListener("click", searchEp);
 
 function handleBackButton() {

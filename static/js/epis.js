@@ -11,10 +11,14 @@ function getEpisodesList(name){
       </div>
       <div class="epis">
       <div class="toogleSubDub">
-    <select onchange="showHideSubDub()" name="selectSubDub">
+    <select onchange="showHideSubDub()" name="selectSubDub" id='lang'>
       <option value="sub">Sub</option>
       <option value="dub">Dub</option>
     </select>
+    <select onclick='subepRange()' name='subepRange' id='subepRange'>
+    </select>
+    <select onclick='dubepRange()' name='dubepRange' id='dubepRange'>
+        </select>
     <p class="CurrentEp">You Are watching <span></span></p>
       </div>
         <div class="subEpis"></div>
@@ -23,6 +27,8 @@ function getEpisodesList(name){
     `;episodesDiv.innerHTML = episodesHtml;
     let subEpis = document.querySelector(".subEpis");
     let dubEpis = document.querySelector(".dubEpis");
+    let subepRange = document.querySelector('#subepRange');
+    let dubepRange = document.querySelector('#dubepRange');
     // get sub epis
     function getSub(){
         let retries = 0;
@@ -45,6 +51,12 @@ function getEpisodesList(name){
                         button = `<button class="loadEPBtn" onclick="loadEp('${id}','${poster}')">${Number(x)+1}</button>`;
                         subEpis.innerHTML += button;
                     };
+                    if(eplist.length > 100){
+                      let btns = subEpis.querySelectorAll('.loadEPBtn');
+                      for (let i = 0; i < Math.ceil(btns.length/100); i++) {
+                        subepRange.innerHTML += `<option value="${i}">${i + 1}</option>`;
+                      }
+                    }
                   }).catch(error => {
                     console.error('Network error occurred:', error);
                     if(retry < 5){
@@ -82,6 +94,13 @@ function getEpisodesList(name){
                       dubEpis.innerHTML += button;
                   };
                   document.querySelectorAll(".loadEPBtn")[0].click();
+                if (eplist.length > 100) {
+                  let btns = dubEpis.querySelectorAll('.loadEPBtn');
+                  for (let i = 0; i < Math.ceil(btns.length / 100); i++) {
+                    dubepRange.innerHTML += `<option value="${i}">${i + 1}</option>`;
+                  }
+                }
+                  
                 }).catch(error => {
                   console.error('Network error occurred:', error);
                   if(retries < 5){

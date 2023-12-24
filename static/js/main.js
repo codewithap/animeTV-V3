@@ -39,16 +39,23 @@ let css = `
   overflow: auto;
 `;
 
+
 function showHideSubDub(){
+  let subepRange = document.querySelector('#subepRange');
+  let dubepRange = document.querySelector('#dubepRange');
   let subEpis = document.querySelector(".subEpis");
   let dubEpis = document.querySelector(".dubEpis");
-  let select = document.querySelector(".toogleSubDub select").value;
+  let select = document.querySelector("#lang").value;
   if(select == "dub"){
     subEpis.style.display = "none";
     dubEpis.style.display = "grid";
+    dubepRange.style.display = "block";
+    subepRange.style.display = "none";
   } else if(select == "sub"){
     subEpis.style.display = "grid";
     dubEpis.style.display = "none";
+    dubepRange.style.display = "none";
+    subepRange.style.display = "block";
   }
 }
 
@@ -67,8 +74,25 @@ searchBox.addEventListener("keypress", function(event) {
     searchBtn.click();
   }
 });
-
 searchBtn.addEventListener("click", searchEp);
+
+function subepRange() {
+  let listNo = document.querySelector('#subepRange').value;
+  let btns = document.querySelectorAll('.subEpis .loadEPBtn');
+  for (let i = 100*listNo; i < 100*(listNo + 1); i++) {
+    btns[i].style.display = block;
+  }
+}
+
+function subepRange() {
+  let listNo = document.querySelector('#subepRange').value;
+  let btns = document.querySelectorAll('.subEpis .loadEPBtn');
+  for (let i = 100 * listNo; i < 100 * (listNo + 1); i++) {
+    btns[i].style.display = block;
+  }
+}
+
+
 
 function handleBackButton() {
   topAiringDiv.innerHTML = "";

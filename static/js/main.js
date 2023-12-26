@@ -80,7 +80,7 @@ function subepRange() {
   let listNo = document.querySelector('#subepRange').value;
   let btns = document.querySelectorAll('.subEpis .loadEPBtn');
   for (let i = 100*listNo; i < 100*(listNo + 1); i++) {
-    btns[i].style.display = block;
+    btns[i].style.display = 'block';
   }
 }
 
@@ -88,7 +88,7 @@ function subepRange() {
 function dubepRange(listNo) {
   let btns = document.querySelectorAll('.dubEpis .loadEPBtn');
   for (let i = 100 * listNo; i < 100 * (listNo + 1); i++) {
-    btns[i].style.display = block;
+    btns[i].style.display = 'block';
   }
 }
 subepRange(1)

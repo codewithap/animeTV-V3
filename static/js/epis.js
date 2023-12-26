@@ -17,7 +17,7 @@ function getEpisodesList(name){
     </select>
     <select onclick='subepRange()' name='subepRange' id='subepRange'>
     </select>
-    <select onclick='dubepRange()' name='dubepRange' id='dubepRange'>
+    <select onclick='dubepRange()' name='dubepRange' id='dubepRange' style='display: none'>
         </select>
     <p class="CurrentEp">You Are watching <span></span></p>
       </div>
@@ -48,7 +48,7 @@ function getEpisodesList(name){
                     let poster = jsonResponse["thumbnail"];
                     for(let x in eplist){
                         let id = eplist[x];
-                        button = `<button class="loadEPBtn" onclick="loadEp('${id}','${poster}')">${Number(x)+1}</button>`;
+                        button = `<button class="loadEPBtn" style='display: none'  onclick="loadEp('${id}','${poster}')">${Number(x)+1}</button>`;
                         subEpis.innerHTML += button;
                     };
                     if(eplist.length > 100){
@@ -90,7 +90,7 @@ function getEpisodesList(name){
                   let poster = jsonResponse["thumbnail"];
                   for(let x in eplist){
                       let id = eplist[x];
-                      button = `<button class="loadEPBtn" onclick="loadEp('${id}','${poster}')">${Number(x)+1}</button>`;
+                      button = `<button class="loadEPBtn" style='display: none'  onclick="loadEp('${id}','${poster}')">${Number(x)+1}</button>`;
                       dubEpis.innerHTML += button;
                   };
                   document.querySelectorAll(".loadEPBtn")[0].click();

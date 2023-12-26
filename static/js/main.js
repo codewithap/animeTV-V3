@@ -57,7 +57,7 @@ function showHideSubDub(){
     dubepRange.style.display = "none";
     subepRange.style.display = "block";
   }
-}
+} 
 
 //  
 function loading(x){
@@ -84,13 +84,16 @@ function subepRange() {
   }
 }
 
-function subepRange() {
-  let listNo = document.querySelector('#subepRange').value;
-  let btns = document.querySelectorAll('.subEpis .loadEPBtn');
+;
+function dubepRange() {
+  let listNo = document.querySelector('#dubepRange').value;
+  let btns = document.querySelectorAll('.dubEpis .loadEPBtn');
   for (let i = 100 * listNo; i < 100 * (listNo + 1); i++) {
     btns[i].style.display = block;
   }
 }
+subepRange()
+dubepRange()
 
 
 

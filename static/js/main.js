@@ -85,15 +85,14 @@ function subepRange() {
 }
 
 ;
-function dubepRange() {
-  let listNo = document.querySelector('#dubepRange').value;
+function dubepRange(listNo) {
   let btns = document.querySelectorAll('.dubEpis .loadEPBtn');
   for (let i = 100 * listNo; i < 100 * (listNo + 1); i++) {
     btns[i].style.display = block;
   }
 }
-subepRange()
-dubepRange()
+subepRange(1)
+dubepRange(1)
 
 
 

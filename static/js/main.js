@@ -76,14 +76,12 @@ searchBox.addEventListener("keypress", function(event) {
 });
 searchBtn.addEventListener("click", searchEp);
 
-function subepRange() {
-  let listNo = document.querySelector('#subepRange').value;
+function subepRange(listNo) {
   let btns = document.querySelectorAll('.subEpis .loadEPBtn');
   for (let i = 100*listNo; i < 100*(listNo + 1); i++) {
     btns[i].style.display = 'block';
   }
 }
-
 ;
 function dubepRange(listNo) {
   let btns = document.querySelectorAll('.dubEpis .loadEPBtn');

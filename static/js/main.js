@@ -78,6 +78,9 @@ searchBtn.addEventListener("click", searchEp);
 
 function subepRange(listNo) {
   let btns = document.querySelectorAll('.subEpis .loadEPBtn');
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].style.display = 'none';
+  }
   for (let i = 100*listNo; i < 100*(listNo + 1); i++) {
     btns[i].style.display = 'block';
   }
@@ -85,12 +88,15 @@ function subepRange(listNo) {
 ;
 function dubepRange(listNo) {
   let btns = document.querySelectorAll('.dubEpis .loadEPBtn');
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].style.display = 'none';
+  }
   for (let i = 100 * listNo; i < 100 * (listNo + 1); i++) {
     btns[i].style.display = 'block';
   }
 }
-subepRange(1)
-dubepRange(1)
+subepRange(0)
+dubepRange(0)
 
 
 

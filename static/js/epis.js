@@ -96,18 +96,11 @@ function getEpisodesList(name){
                 }).then(jsonResponse => {
                   let eplist = jsonResponse["episodes"];
                   let poster = jsonResponse["thumbnail"];
-                  let o = 0;
-                    for(let x in eplist){
-                        let id = eplist[x];
-                        if(o < 100){
-                        button = `<button class="loadEPBtn" style='display: block'  onclick="loadEp('${id}','${poster}')">${Number(x)+1}</button>`;
-                        subEpis.innerHTML += button;}
-                        else{
-                          button = `<button class="loadEPBtn" style='display: none'  onclick="loadEp('${id}','${poster}')">${Number(x)+1}</button>`;
-                          subEpis.innerHTML += button;
-                        }
-                        o = o + 1;
-                    };
+                  for(let x in eplist){
+                      let id = eplist[x];
+                      button = `<button class="loadEPBtn" style='display: none'  onclick="loadEp('${id}','${poster}')">${Number(x)+1}</button>`;
+                      dubEpis.innerHTML += button;
+                  };
                   document.querySelectorAll(".loadEPBtn")[0].click();
                 if (eplist.length > 100) {
                   let btns = dubEpis.querySelectorAll('.loadEPBtn');

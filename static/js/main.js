@@ -81,7 +81,7 @@ function subepRange(listNo) {
   for (let i = 0; i < btns.length; i++) {
     btns[i].style.display = 'none';
   }
-  for (let i = 100*listNo; i < 100*(listNo + 1); i++) {
+  for (let i = 100 * listNo; i < 100*(listNo + 1); i++) {
     btns[i].style.display = 'block';
   }
 }
@@ -95,9 +95,6 @@ function dubepRange(listNo) {
     btns[i].style.display = 'block';
   }
 }
-subepRange(0)
-dubepRange(0)
-
 
 
 function handleBackButton() {

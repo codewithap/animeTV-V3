@@ -15,9 +15,9 @@ function getEpisodesList(name){
       <option value="sub">Sub</option>
       <option value="dub">Dub</option>
     </select>
-    <select onclick="subepRange(document.querySelector('#subepRange').value)" name='subepRange' id='subepRange'>
+    <select name='subepRange' id='subepRange'>
     </select>
-    <select onclick="dubepRange(document.querySelector('#dubepRange').value)" name='dubepRange' id='dubepRange' style='display: none'>
+    <select name='dubepRange' id='dubepRange' style='display: none'>
         </select>
     <p class="CurrentEp">You Are watching <span></span></p>
       </div>
@@ -54,9 +54,11 @@ function getEpisodesList(name){
                     if(eplist.length > 100){
                       let btns = subEpis.querySelectorAll('.loadEPBtn');
                       for (let i = 0; i < Math.ceil(btns.length/100); i++) {
-                        subepRange.innerHTML += `<option value="${i}">${i + 1}</option>`;
+                        subepRange.innerHTML += `<option onclick="subepRange(${i})" value="${i}">${i + 1}</option>`;
                       }
                     }
+                    subepRange(0)
+                    
                   }).catch(error => {
                     console.error('Network error occurred:', error);
                     if(retry < 5){
@@ -97,10 +99,10 @@ function getEpisodesList(name){
                 if (eplist.length > 100) {
                   let btns = dubEpis.querySelectorAll('.loadEPBtn');
                   for (let i = 0; i < Math.ceil(btns.length / 100); i++) {
-                    dubepRange.innerHTML += `<option value="${i}">${i + 1}</option>`;
+                    dubepRange.innerHTML += `<option onclick="dubepRange(${i})" value="${i}">${i + 1}</option>`;
                   }
                 }
-                  
+                  dubepRange(0)
                 }).catch(error => {
                   console.error('Network error occurred:', error);
                   if(retries < 5){
@@ -144,6 +146,7 @@ function loadEp(gogoid,poster){loading(true);
         video.innerHTML = `      
             <iframe  src="/play?m3u8=${file1}&m3u8_2=${file2}&poster=${poster}" frameborder="0" style="width: 100%;height: 100%"></iframe>
 `;loading(false);
+
       }).catch(error => {
       console.error('Network error occurred:', error);
         setTimeout(getDubEpis(), 2000);

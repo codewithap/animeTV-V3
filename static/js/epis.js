@@ -15,9 +15,9 @@ function getEpisodesList(name){
       <option value="sub">Sub</option>
       <option value="dub">Dub</option>
     </select>
-    <select onclick='subepRange(document.querySelector('#dubepRange').value)' name='subepRange' id='subepRange'>
+    <select onclick="subepRange(document.querySelector('#subepRange').value)" name='subepRange' id='subepRange'>
     </select>
-    <select onclick='dubepRange(document.querySelector('#dubepRange').value)' name='dubepRange' id='dubepRange' style='display: none'>
+    <select onclick="dubepRange(document.querySelector('#dubepRange').value)" name='dubepRange' id='dubepRange' style='display: none'>
         </select>
     <p class="CurrentEp">You Are watching <span></span></p>
       </div>
